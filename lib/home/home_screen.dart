@@ -85,6 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
 // region city
   Widget city(PinCode pinCode) {
     return Visibility(
+      
       visible: pinCode.isVisible!,
       child: Padding(
         padding: const EdgeInsets.only(left: 40),
