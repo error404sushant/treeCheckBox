@@ -1,0 +1,88 @@
+{
+  "pinCode": [
+    {
+      "state": "delhi",
+      "stateMarked": 0,
+      "cities": [
+        {
+          "city": "chhatarpur",
+          "cityMarked": 0,
+          "pincodes": [
+            {
+              "pincode": 110078,
+              "pincodeMarked":0
+            },
+            {
+              "pincode": 110088,
+              "pincodeMarked": 0
+            },
+            {
+              "pincode": 110098,
+              "pincodeMarked": 0
+            }
+          ]
+        },
+        {
+          "city": "gurgaon",
+          "cityMarked": 0,
+          "pincodes": [
+            {
+              "pincode": 110010,
+              "pincodeMarked": 0
+            },
+            {
+              "pincode": 110011,
+              "pincodeMarked": 0
+            },
+            {
+              "pincode": 110012,
+              "pincodeMarked": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "state": "haryana",
+      "stateMarked": 0,
+      "cities": [
+        {
+          "city": "chandigarh",
+          "cityMarked": 0,
+          "pincodes": [
+            {
+              "pincode": 133301,
+              "pincodeMarked": 0
+            },
+            {
+              "pincode": 133302,
+              "pincodeMarked": 0
+            },
+            {
+              "pincode": 133304,
+              "pincodeMarked": 0
+            }
+          ]
+        },
+        {
+          "city": "rohtak",
+          "cityMarked": 0,
+          "pincodes": [
+            {
+              "pincode": 124001,
+              "pincodeMarked": 0
+            },
+            {
+              "pincode": 124002,
+              "pincodeMarked": 0
+            },
+            {
+              "pincode": 124003,
+              "pincodeMarked":0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
