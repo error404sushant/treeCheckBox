@@ -12,6 +12,7 @@ class HomeBloc {
   BuildContext context;
   bool openForOrder = false;
   late PinCodeResponse pinCodeResponse;
+  List<int> selectedPinCodes = [];
 
   // endregion
 
@@ -88,7 +89,6 @@ class HomeBloc {
       city.cityMarked = 0;
     }
 
-
     // check city
     if (isAllCityChecked(pinCode) == PinCodeCheck.AllSelected) {
       pinCode.stateMarked = 2;
@@ -147,11 +147,12 @@ class HomeBloc {
 
     if (!storeOnlineCtrl.isClosed) storeOnlineCtrl.sink.add(true);
   }
+
 // endregion
 
 // region cityFullSelect
   void cityFullSelect(Cities cities, PinCode pinCode) {
-    cities.cityMarked = 2 ;
+    cities.cityMarked = 2;
     for (var pincode in cities.pincodes!) pincode.pincodeMarked = 2;
 
     // check city
@@ -165,5 +166,26 @@ class HomeBloc {
 
     if (!storeOnlineCtrl.isClosed) storeOnlineCtrl.sink.add(true);
   }
+
+// endregion
+
+// region submit
+  void submit() {
+    selectedPinCodes.clear();
+    for (var state in pinCodeResponse.pinCode!) {
+      for (var city in state.cities!) {
+        for (var pinCodes in city.pincodes!) {
+          if (pinCodes.pincodeMarked == 2)
+            // if(selectedPinCodes.contains(pinCodes.pincode!)){
+            //   selectedPinCodes.remove(pinCodes.pincode!);
+            // }
+            selectedPinCodes.add(pinCodes.pincode!);
+        }
+      }
+    }
+
+    print(selectedPinCodes);
+  }
+
 // endregion
 }

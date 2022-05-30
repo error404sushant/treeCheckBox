@@ -43,40 +43,48 @@ class _HomeScreenState extends State<HomeScreen> {
 
   // region Body
   Widget body() {
-    return Padding(
-      padding: EdgeInsets.only(top: 9),
-      child: StreamBuilder<bool>(
-          stream: homeBloc.storeOnlineCtrl.stream,
-          builder: (context, snapshot) {
-            return ListView.builder(
-              itemBuilder: (context, index) {
-                return Column(
-                  children: [
-                    Row(
-                      children: [
-                        Text("${homeBloc.pinCodeResponse.pinCode![index].state}"),
-                        (homeBloc.pinCodeResponse.pinCode![index].stateMarked == 1)
-                            ? Container(
-                                color: Colors.grey,
-                                height: 30,
-                                width: 30,
-                                child: CupertinoButton(
-                                  padding: EdgeInsets.zero,
-                                    onPressed: ()=> homeBloc.stateFullSelect(homeBloc.pinCodeResponse.pinCode![index]),
-                                    child: Text("-")),
-                              )
-                            : Checkbox(
-                                value: homeBloc.pinCodeResponse.pinCode![index].stateMarked == 2,
-                                onChanged: (value) => homeBloc.onChangeState(homeBloc.pinCodeResponse.pinCode![index]))
-                      ],
-                    ),
-                    city(homeBloc.pinCodeResponse.pinCode![index])
-                  ],
-                );
-              },
-              itemCount: homeBloc.pinCodeResponse.pinCode!.length,
-            );
-          }),
+    return Column(
+      children: [
+        Expanded(
+          child: Padding(
+            padding: EdgeInsets.only(top: 9),
+            child: StreamBuilder<bool>(
+                stream: homeBloc.storeOnlineCtrl.stream,
+                builder: (context, snapshot) {
+                  return ListView.builder(
+                    itemBuilder: (context, index) {
+                      return Column(
+                        children: [
+                          Row(
+                            children: [
+                              Text("${homeBloc.pinCodeResponse.pinCode![index].state}"),
+                              (homeBloc.pinCodeResponse.pinCode![index].stateMarked == 1)
+                                  ? Container(
+                                      color: Colors.grey,
+                                      height: 30,
+                                      width: 30,
+                                      child: CupertinoButton(
+                                        padding: EdgeInsets.zero,
+                                          onPressed: ()=> homeBloc.stateFullSelect(homeBloc.pinCodeResponse.pinCode![index]),
+                                          child: Text("-")),
+                                    )
+                                  : Checkbox(
+                                      value: homeBloc.pinCodeResponse.pinCode![index].stateMarked == 2,
+                                      onChanged: (value) => homeBloc.onChangeState(homeBloc.pinCodeResponse.pinCode![index]))
+                            ],
+                          ),
+                          city(homeBloc.pinCodeResponse.pinCode![index])
+                        ],
+                      );
+                    },
+                    itemCount: homeBloc.pinCodeResponse.pinCode!.length,
+                  );
+                }),
+          ),
+        ),
+        submit(),
+        clear(),
+      ],
     );
   }
 
@@ -85,7 +93,7 @@ class _HomeScreenState extends State<HomeScreen> {
 // region city
   Widget city(PinCode pinCode) {
     return Visibility(
-      
+
       visible: pinCode.isVisible!,
       child: Padding(
         padding: const EdgeInsets.only(left: 40),
@@ -149,6 +157,22 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
 //endregion
+
+//region Submit
+Widget submit(){
+    return CupertinoButton(child: Text("Submit"), onPressed: (){
+      homeBloc.submit();
+    });
+}
+//endregion
+// region Submit
+Widget clear(){
+    return CupertinoButton(child: Text("Clear"), onPressed: (){
+      homeBloc.selectedPinCodes.clear();
+    });
+}
+//endregion
+
 
 
 
